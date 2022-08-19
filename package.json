@@ -1,0 +1,30 @@
+{
+  "name": "fampay_backend_assignment",
+  "version": "1.0.0",
+  "description": "Fampay Backend Assignment",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Logan-47/Fampay_backend_assignment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Logan-47/Fampay_backend_assignment/issues"
+  },
+  "homepage": "https://github.com/Logan-47/Fampay_backend_assignment#readme",
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "helmet": "^5.1.1",
+    "morgan": "^1.10.0",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
