@@ -1,4 +1,4 @@
-const updateVideosJob = require('./updateVideosJob.js');
+const updateVideosJob = require('./updateVideos.job.js');
 
 module.exports = {
   updateVideosJob,

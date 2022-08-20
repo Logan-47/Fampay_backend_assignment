@@ -1,0 +1,11 @@
+{
+  "api_domain": "",
+  "api_keys": [],
+  "yt": {
+    "yt_search_category": "",
+    "yt_max_result_per_query": -1
+  },
+  "database": {
+    "uri": ""
+  }
+}

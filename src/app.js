@@ -3,12 +3,8 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const xss = require('xss-clean');
 const constants = require('./constants');
-const jobs = require('./jobs');
-const middlewares = require('./middlewares');
-
-const { apiTokenMiddleWare } = middlewares;
-
 const { NODE_ENV, API_STATUS } = constants;
+const { videosRoutes } = require('./routes');
 
 const app = express();
 app.use(helmet()); // HTTP Security Headers
@@ -27,13 +23,7 @@ app.get('/api/ping', (req, res) => {
   });
 });
 
-app.get(
-  '/api/interal-job/updateVideos',
-  apiTokenMiddleWare.setAPIToken,
-  async (req, res) => {
-    return await jobs.updateVideosJob(req, res);
-  }
-);
+app.use('/api/videos', videosRoutes);
 
 app.all('*', (req, res) => {
   res

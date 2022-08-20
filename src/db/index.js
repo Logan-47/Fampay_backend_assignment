@@ -1,21 +1,25 @@
-const { Sequelize } = require('sequelize');
+const mongoose = require('mongoose');
 const configs = require('../../config.json');
-const constants = require('../constants');
-
-const { DB_NAME, DB_PASSWORD, DB_USERNAME } = constants.DB_DEFAULT_CONFIGS;
 
 const {
-  database: {
-    name: dbName = DB_NAME, // if name is undefined set DB_NAME as default value
-    username: dbUserName = DB_USERNAME,
-    password: dbPassword = DB_PASSWORD,
-  },
+  database: { uri: dbUri },
 } = configs;
 
-const sequelize = new Sequelize(dbName, dbUserName, dbPassword, {
-  dialect: 'sqlite',
-  storage: 'database.sqlite', // Will be saving DB as a File
-  loggin: console.log,
-});
+const init = async () => {
+  mongoose
+    .connect(dbUri, {
+      useCreateIndex: true,
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then(() => {
+      console.log('[database] connected to mongodb');
+    })
+    .catch((err) => {
+      console.log(`[database][err]: ${err}`);
+    });
+};
 
-module.exports = sequelize;
+module.exports = {
+  init,
+};

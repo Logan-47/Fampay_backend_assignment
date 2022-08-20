@@ -1,30 +1,39 @@
-const db = require('../db');
-const { DataTypes, Sequelize } = require('sequelize');
+const mongoose = require('mongoose');
+const mongooseFuzzySearch = require('mongoose-fuzzy-searching');
 
-const Videos = db.define('videos', {
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
+const videosSchema = new mongoose.Schema(
+  {
+    title: String,
+    channelId: String,
+    channelTitle: String,
+    videoId: String,
+    description: String,
+    thumbnails: {
+      default: {
+        url: String,
+        width: Number,
+        height: Number,
+      },
+      medium: {
+        url: String,
+        width: Number,
+        height: Number,
+      },
+      high: {
+        url: String,
+        width: Number,
+        height: Number,
+      },
+    },
+    publishedAt: Date,
   },
-  title: {
-    type: DataTypes.STRING,
-  },
-  channelId: {
-    type: DataTypes.STRING,
-  },
-  VideoId: {
-    type: DataTypes.STRING,
-  },
-  description: {
-    type: DataTypes.STRING,
-  },
-  publishedAt: {
-    type: DataTypes.DATE,
-  },
-  thumbnails: {
-    type: DataTypes.STRING,
-  },
+  {
+    timestamps: true,
+  }
+);
+
+videosSchema.plugin(mongooseFuzzySearch, {
+  fields: ['title', 'description'],
 });
 
-module.exports = Videos;
+module.exports = mongoose.model('Videos', videosSchema);

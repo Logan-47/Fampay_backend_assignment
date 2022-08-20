@@ -3,10 +3,13 @@ dotenv.config();
 const app = require('./src/app');
 const utils = require('./src/utils');
 const db = require('./src/db');
-const models = require('./src/models');
+const crons = require('./src/crons');
+const { PORT } = require('./src/constants');
+const { port = PORT } = require('./config.json');
 
-app.listen(3000, () => {
-  db.sync({ alter: true });
-  utils.resetAPIKey();
-  console.log('server listening on PORT 3000');
+app.listen(port, () => {
+  db.init();
+  utils.apiTokenUtils.resetAPIKey();
+  crons.updateVideosCron.start();
+  console.log(`server listening on PORT ${port}`);
 });

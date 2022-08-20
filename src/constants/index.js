@@ -1,11 +1,12 @@
 const PORT = 3000;
 const NODE_ENV = {
   PRODUCTION: 'production',
-  development: 'development',
+  DEVELOPMENT: 'development',
 };
 const API_STATUS = {
   STATUS_OK: 200,
   INTERNAL_SERVER_ERROR: 500,
+  BAD_REQUEST: 400,
 };
 
 const YT_DEFAULT_CONFIGS = {
@@ -13,10 +14,8 @@ const YT_DEFAULT_CONFIGS = {
   MAX_RESULT_PER_QUERY: 25,
 };
 
-const DB_DEFAULT_CONFIGS = {
-  DB_NAME: 'yt_search',
-  DB_USERNAME: 'root',
-  DB_PASSWORD: 'root',
+const ERROR_CONSTANTS = {
+  QUOTA_EXCEEDED: 'quotaExceeded',
 };
 
 module.exports = {
@@ -24,5 +23,5 @@ module.exports = {
   NODE_ENV,
   API_STATUS,
   YT_DEFAULT_CONFIGS,
-  DB_DEFAULT_CONFIGS,
+  ERROR_CONSTANTS,
 };
